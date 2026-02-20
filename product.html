@@ -546,6 +546,11 @@
     <script src="js/language.js"></script>
     <script src="js/main.js"></script>
     <script>
+        function getProductText(key, fallback) {
+            const lang = localStorage.getItem('language') || 'en';
+            return translations?.[lang]?.product?.[key] || fallback;
+        }
+
         const mainImage = document.getElementById('main-product-image');
         const thumbs = document.querySelectorAll('.thumb');
         thumbs.forEach((thumb) => {
@@ -576,7 +581,7 @@
             addBtn.addEventListener('click', () => {
                 const quantity = document.querySelector('.quantity-stepper .qty-value')?.textContent || '1';
                 const original = addBtn.innerHTML;
-                addBtn.innerHTML = '<i data-lucide="check"></i> Added';
+                addBtn.innerHTML = `<i data-lucide="check"></i> ${getProductText('added', 'Added')}`;
                 addBtn.style.background = '#16a34a';
                 lucide.createIcons();
                 console.log('Added Wildflower Reserve x' + quantity);

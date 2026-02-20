@@ -345,8 +345,8 @@
         <div class="orders-wrap">
             <div class="orders-top">
                 <div class="orders-heading">
-                    <h1>Previous Orders</h1>
-                    <p>Your complete order history in one place.</p>
+                    <h1 data-i18n="previousOrdersPage.title">Previous Orders</h1>
+                    <p data-i18n="previousOrdersPage.subtitle">Your complete order history in one place.</p>
                 </div>
                 <div class="orders-summary-chip" id="orders-count-chip">0 orders</div>
             </div>
@@ -418,6 +418,14 @@
     <script>
         const ORDERS_KEY = 'honeyOrders';
         const PREVIOUS_ORDERS_CURRENT_USER_KEY = 'honeyCurrentUser';
+        function getOrdersText(key, fallback) {
+            const lang = localStorage.getItem('language') || 'en';
+            return translations?.[lang]?.previousOrdersPage?.[key] || fallback;
+        }
+
+        function getLocaleForLang() {
+            return (localStorage.getItem('language') || 'en') === 'ar' ? 'ar' : 'en';
+        }
 
         function getCurrentUser() {
             try {
@@ -441,7 +449,7 @@
 
         function formatDate(isoDate) {
             try {
-                return new Date(isoDate).toLocaleString([], {
+                return new Date(isoDate).toLocaleString(getLocaleForLang(), {
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
@@ -560,44 +568,77 @@
         const renderedOrders = userOrders.length ? userOrders : getStaticDemoOrders(currentUser.id);
         const ordersListEl = document.getElementById('orders-list');
         const ordersCountChip = document.getElementById('orders-count-chip');
-        ordersCountChip.textContent = `${renderedOrders.length} ${renderedOrders.length === 1 ? 'order' : 'orders'}`;
+        function getStatusLabel(status) {
+            if (status === 'delivered') return getOrdersText('delivered', 'Delivered');
+            if (status === 'shipped') return getOrdersText('shipped', 'Shipped');
+            return getOrdersText('processing', 'Processing');
+        }
 
-        ordersListEl.innerHTML = renderedOrders.map((order) => {
-            const itemsHtml = (order.items || []).map((item) => `
-                <div class="order-item">
-                    <img src="${item.image || 'https://placehold.co/120x120/f7f7f7/6b7280?text=Honey'}" alt="${item.name || 'Product'}">
-                    <div>
-                        <p class="order-item-name">${item.name || 'Product'}</p>
-                        <p class="order-item-meta">Qty: ${item.qty || 1}${item.size ? ` • Size: ${item.size}` : ''}</p>
+        function getShippingLabel(method) {
+            return method === 'express'
+                ? getOrdersText('express', 'Express')
+                : getOrdersText('standard', 'Standard');
+        }
+
+        function renderOrders() {
+            ordersCountChip.textContent = `${renderedOrders.length} ${renderedOrders.length === 1 ? getOrdersText('order', 'order') : getOrdersText('orders', 'orders')}`;
+
+            if (!renderedOrders.length) {
+                ordersListEl.innerHTML = `
+                    <div class="empty-orders">
+                        <i data-lucide="shopping-bag"></i>
+                        <h3>${getOrdersText('emptyTitle', 'No orders yet')}</h3>
+                        <p>${getOrdersText('emptyDesc', 'You have not placed any orders yet.')}</p>
+                        <a href="/offering.html">
+                            <span>${getOrdersText('shopNow', 'Shop now')}</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
                     </div>
-                    <p class="order-item-price">${formatCurrency(item.total)}</p>
-                </div>
-            `).join('');
+                `;
+                lucide.createIcons();
+                return;
+            }
 
-            const status = String(order.status || 'processing').toLowerCase();
-            return `
-                <article class="order-card">
-                    <div class="order-card-head">
+            ordersListEl.innerHTML = renderedOrders.map((order) => {
+                const itemsHtml = (order.items || []).map((item) => `
+                    <div class="order-item">
+                        <img src="${item.image || 'https://placehold.co/120x120/f7f7f7/6b7280?text=Honey'}" alt="${item.name || getOrdersText('productFallback', 'Product')}">
                         <div>
-                            <p class="order-id">${order.id || '-'}</p>
-                            <p class="order-date">${formatDate(order.createdAt)}</p>
+                            <p class="order-item-name">${item.name || getOrdersText('productFallback', 'Product')}</p>
+                            <p class="order-item-meta">${getOrdersText('qty', 'Qty')}: ${item.qty || 1}${item.size ? ` • ${getOrdersText('size', 'Size')}: ${item.size}` : ''}</p>
                         </div>
-                        <div style="display:flex; gap:8px; align-items:center;">
-                            <span class="order-status-pill ${status}">${status}</span>
-                            <span class="order-total-pill">${formatCurrency(order.total)}</span>
-                        </div>
+                        <p class="order-item-price">${formatCurrency(item.total)}</p>
                     </div>
-                    <div class="order-items">${itemsHtml}</div>
-                    <div class="order-card-foot">
-                        <span>Shipping: ${(order.shippingMethod || 'standard').toUpperCase()}</span>
-                        <span>Subtotal: ${formatCurrency(order.subtotal)}</span>
-                        <span>Shipping Cost: ${formatCurrency(order.shippingCost)}</span>
-                    </div>
-                </article>
-            `;
-        }).join('');
+                `).join('');
 
-        lucide.createIcons();
+                const status = String(order.status || 'processing').toLowerCase();
+                return `
+                    <article class="order-card">
+                        <div class="order-card-head">
+                            <div>
+                                <p class="order-id">${order.id || '-'}</p>
+                                <p class="order-date">${formatDate(order.createdAt)}</p>
+                            </div>
+                            <div style="display:flex; gap:8px; align-items:center;">
+                                <span class="order-status-pill ${status}">${getStatusLabel(status)}</span>
+                                <span class="order-total-pill">${formatCurrency(order.total)}</span>
+                            </div>
+                        </div>
+                        <div class="order-items">${itemsHtml}</div>
+                        <div class="order-card-foot">
+                            <span>${getOrdersText('shipping', 'Shipping')}: ${getShippingLabel(order.shippingMethod || 'standard')}</span>
+                            <span>${getOrdersText('subtotal', 'Subtotal')}: ${formatCurrency(order.subtotal)}</span>
+                            <span>${getOrdersText('shippingCost', 'Shipping Cost')}: ${formatCurrency(order.shippingCost)}</span>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        renderOrders();
+        window.addEventListener('languageChanged', renderOrders);
 
         const scrollToTopBtn = document.getElementById('scrollToTop');
         window.addEventListener('scroll', () => {

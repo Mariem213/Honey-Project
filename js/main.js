@@ -24,25 +24,34 @@ function getAvatarFallback(firstName) {
 	return `https://placehold.co/100x100/f6f6f6/6b7280?text=${initial}`;
 }
 
-function createProfileDropdownItem(label, icon, href) {
+function createProfileDropdownItem(key, fallback, icon, href) {
 	const item = document.createElement('a');
 	item.className = 'profile-dropdown-item';
 	item.href = href;
-	item.innerHTML = `<i data-lucide="${icon}"></i><span>${label}</span>`;
+	item.innerHTML = `<i data-lucide="${icon}"></i><span data-nav-i18n-key="${key}" data-nav-i18n-fallback="${fallback}">${getNavTranslation(key, fallback)}</span>`;
 	return item;
 }
 
-function createMobileSheetActionLink(label, icon, href) {
+function createMobileSheetActionLink(key, fallback, icon, href) {
 	const link = document.createElement('a');
 	link.className = 'sheet-action-link mobile-account-action';
 	link.href = href;
-	link.innerHTML = `<i data-lucide="${icon}"></i><span>${label}</span>`;
+	link.innerHTML = `<i data-lucide="${icon}"></i><span data-nav-i18n-key="${key}" data-nav-i18n-fallback="${fallback}">${getNavTranslation(key, fallback)}</span>`;
 	return link;
 }
 
 function getNavTranslation(key, fallback) {
 	const lang = localStorage.getItem('language') || 'en';
 	return translations?.[lang]?.nav?.[key] || fallback;
+}
+
+function updateAccountMenuTranslations() {
+	const translatableLabels = document.querySelectorAll('[data-nav-i18n-key]');
+	translatableLabels.forEach((label) => {
+		const key = label.getAttribute('data-nav-i18n-key');
+		const fallback = label.getAttribute('data-nav-i18n-fallback') || '';
+		label.textContent = getNavTranslation(key, fallback);
+	});
 }
 
 function attachProfileDropdown(desktopAuthLink, user) {
@@ -59,17 +68,17 @@ function attachProfileDropdown(desktopAuthLink, user) {
 		</div>
 	`;
 
-	const profileLink = createProfileDropdownItem('Profile', 'user-circle', '/profile.html');
-	const ordersLink = createProfileDropdownItem('Previous Orders', 'receipt-text', '/previous-orders.html');
-	const changePasswordLink = createProfileDropdownItem('Change Password', 'key-round', '#');
+	const profileLink = createProfileDropdownItem('profile', 'Profile', 'user-circle', '/profile.html');
+	const ordersLink = createProfileDropdownItem('previousOrders', 'Previous Orders', 'receipt-text', '/previous-orders.html');
+	const changePasswordLink = createProfileDropdownItem('changePassword', 'Change Password', 'key-round', '#');
 	const logoutButton = document.createElement('button');
 	logoutButton.type = 'button';
 	logoutButton.className = 'profile-dropdown-item profile-dropdown-logout';
-	logoutButton.innerHTML = '<i data-lucide="log-out"></i><span>Logout</span>';
+	logoutButton.innerHTML = '<i data-lucide="log-out"></i><span data-nav-i18n-key="logout" data-nav-i18n-fallback="Logout">Logout</span>';
 
 	changePasswordLink.addEventListener('click', (e) => {
 		e.preventDefault();
-		alert('Change Password feature will be available soon.');
+		alert(getNavTranslation('changePasswordSoon', 'Change Password feature will be available soon.'));
 	});
 
 	logoutButton.addEventListener('click', () => {
@@ -149,25 +158,13 @@ function renderAuthStateInNavbar() {
 		// Clear previously injected account actions before re-inserting.
 		mobileActionsContainer.querySelectorAll('.mobile-account-action').forEach((node) => node.remove());
 
-		const ordersLink = createMobileSheetActionLink(
-			getNavTranslation('previousOrders', 'Previous Orders'),
-			'receipt-text',
-			'/previous-orders.html'
-		);
-		const changePasswordLink = createMobileSheetActionLink(
-			getNavTranslation('changePassword', 'Change Password'),
-			'key-round',
-			'#'
-		);
-		const logoutLink = createMobileSheetActionLink(
-			getNavTranslation('logout', 'Logout'),
-			'log-out',
-			'#'
-		);
+		const ordersLink = createMobileSheetActionLink('previousOrders', 'Previous Orders', 'receipt-text', '/previous-orders.html');
+		const changePasswordLink = createMobileSheetActionLink('changePassword', 'Change Password', 'key-round', '#');
+		const logoutLink = createMobileSheetActionLink('logout', 'Logout', 'log-out', '#');
 
 		changePasswordLink.addEventListener('click', (e) => {
 			e.preventDefault();
-			alert('Change Password feature will be available soon.');
+			alert(getNavTranslation('changePasswordSoon', 'Change Password feature will be available soon.'));
 		});
 
 		logoutLink.addEventListener('click', (e) => {
@@ -190,7 +187,11 @@ function renderAuthStateInNavbar() {
 }
 
 renderAuthStateInNavbar();
+updateAccountMenuTranslations();
 lucide.createIcons();
+window.addEventListener('languageChanged', () => {
+	updateAccountMenuTranslations();
+});
 
 // Search Toggle Functionality (only on pages that have search, not auth page)
 const searchToggle = document.getElementById('search-toggle');

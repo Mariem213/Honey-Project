@@ -268,31 +268,31 @@
                     <div class="profile-actions">
                         <a href="/offering.html" class="profile-action-btn">
                             <i data-lucide="shopping-bag"></i>
-                            Continue Shopping
+                            <span data-i18n="profile.continueShopping">Continue Shopping</span>
                         </a>
                         <button id="logout-btn" type="button" class="profile-action-btn logout-btn">
                             <i data-lucide="log-out"></i>
-                            Logout
+                            <span data-i18n="profile.logout">Logout</span>
                         </button>
                     </div>
                 </div>
 
                 <div class="profile-grid">
                     <div class="profile-info-card">
-                        <p class="profile-info-label">First Name</p>
+                        <p class="profile-info-label" data-i18n="profile.firstName">First Name</p>
                         <p id="profile-first-name" class="profile-info-value">-</p>
                     </div>
                     <div class="profile-info-card">
-                        <p class="profile-info-label">Last Name</p>
+                        <p class="profile-info-label" data-i18n="profile.lastName">Last Name</p>
                         <p id="profile-last-name" class="profile-info-value">-</p>
                     </div>
                     <div class="profile-info-card">
-                        <p class="profile-info-label">Email</p>
+                        <p class="profile-info-label" data-i18n="profile.email">Email</p>
                         <p id="profile-email-card" class="profile-info-value">-</p>
                     </div>
                     <div class="profile-info-card">
-                        <p class="profile-info-label">Account Status</p>
-                        <p class="profile-info-value">Active member</p>
+                        <p class="profile-info-label" data-i18n="profile.accountStatus">Account Status</p>
+                        <p class="profile-info-value" data-i18n="profile.activeMember">Active member</p>
                     </div>
                 </div>
             </section>
@@ -361,13 +361,22 @@
     <script src="js/main.js"></script>
     <script>
         const PROFILE_CURRENT_USER_KEY = 'honeyCurrentUser';
+        function getProfileText(key, fallback) {
+            const lang = localStorage.getItem('language') || 'en';
+            return translations?.[lang]?.profile?.[key] || fallback;
+        }
+
+        function updateProfileWelcomeTitle(user) {
+            const fullName = `${user?.firstName || ''} ${user?.lastName || ''}`.trim();
+            document.getElementById('profile-name').textContent = fullName || getProfileText('welcome', 'Welcome');
+        }
+
         const currentUser = JSON.parse(localStorage.getItem(PROFILE_CURRENT_USER_KEY) || 'null');
 
         if (!currentUser) {
             window.location.href = '/auth.html';
         } else {
-            const fullName = `${currentUser.firstName || ''} ${currentUser.lastName || ''}`.trim();
-            document.getElementById('profile-name').textContent = fullName || 'Welcome';
+            updateProfileWelcomeTitle(currentUser);
             document.getElementById('profile-email').textContent = currentUser.email || '';
             document.getElementById('profile-email-card').textContent = currentUser.email || '-';
             document.getElementById('profile-first-name').textContent = currentUser.firstName || '-';
@@ -379,9 +388,16 @@
             } else {
                 const firstLetter = (currentUser.firstName || 'U').charAt(0).toUpperCase();
                 avatar.src = `https://placehold.co/200x200/f6f6f6/6b7280?text=${firstLetter}`;
-                document.getElementById('profile-empty').textContent = 'No profile picture uploaded yet.';
+                document.getElementById('profile-empty').textContent = getProfileText('noProfilePicture', 'No profile picture uploaded yet.');
             }
         }
+
+        window.addEventListener('languageChanged', () => {
+            updateProfileWelcomeTitle(currentUser);
+            if (currentUser && !currentUser.profileImage) {
+                document.getElementById('profile-empty').textContent = getProfileText('noProfilePicture', 'No profile picture uploaded yet.');
+            }
+        });
 
         document.getElementById('logout-btn').addEventListener('click', () => {
             localStorage.removeItem(PROFILE_CURRENT_USER_KEY);
@@ -406,4 +422,5 @@
     </script>
 </body>
 
+</html>
 </html>

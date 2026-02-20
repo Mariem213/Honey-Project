@@ -1,9 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap");
+
 :root {
 	--primary: #da830a; /* Primary Orange */
 	--background: #ffffff;
 	--foreground: #1c1917;
 	--secondary: #f5f5f4;
 	--white: #ffffff;
+	--font-global: "Noto Kufi Arabic", Helvetica, Arial, sans-serif;
+	--font-size-body: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+	--font-size-small: clamp(0.8rem, 0.77rem + 0.1vw, 0.9rem);
+	--font-size-h6: clamp(0.98rem, 0.94rem + 0.15vw, 1.08rem);
+	--font-size-h5: clamp(1.08rem, 1.02rem + 0.2vw, 1.22rem);
+	--font-size-h4: clamp(1.2rem, 1.12rem + 0.3vw, 1.4rem);
+	--font-size-h3: clamp(1.35rem, 1.2rem + 0.45vw, 1.7rem);
+	--font-size-h2: clamp(1.6rem, 1.35rem + 0.8vw, 2.2rem);
+	--font-size-h1: clamp(1.9rem, 1.5rem + 1.2vw, 2.8rem);
 }
 
 /* RTL Support */
@@ -121,6 +132,82 @@ html[dir="rtl"] .scroll-to-top {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body,
+body * {
+	font-family: var(--font-global) !important;
+}
+
+body {
+	font-size: var(--font-size-body);
+	line-height: 1.7;
+	text-rendering: optimizeLegibility;
+}
+
+h1 {
+	font-size: var(--font-size-h1);
+	line-height: 1.2;
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+	line-height: 1.25;
+}
+
+h3 {
+	font-size: var(--font-size-h3);
+	line-height: 1.3;
+}
+
+h4 {
+	font-size: var(--font-size-h4);
+	line-height: 1.35;
+}
+
+h5 {
+	font-size: var(--font-size-h5);
+	line-height: 1.4;
+}
+
+h6 {
+	font-size: var(--font-size-h6);
+	line-height: 1.45;
+}
+
+p,
+li,
+a,
+button,
+input,
+select,
+textarea,
+label,
+td,
+th {
+	font-size: var(--font-size-body);
+	line-height: 1.6;
+}
+
+small,
+.small {
+	font-size: var(--font-size-small);
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-global) !important;
+	font-weight: 600;
 }
 body {
 	font-family: "Montserrat", sans-serif;
@@ -415,7 +502,9 @@ section + section {
 	object-fit: cover;
 	border: 2px solid rgba(255, 255, 255, 0.6);
 	box-shadow: 0 6px 14px -10px rgba(0, 0, 0, 0.55);
-	transition: transform 0.25s ease, border-color 0.25s ease;
+	transition:
+		transform 0.25s ease,
+		border-color 0.25s ease;
 }
 
 .nav-scrolled .nav-profile-avatar {
@@ -1330,19 +1419,19 @@ button.icon-btn.md-hide,
 	font-family: "Cormorant Garamond", serif;
 	font-size: 4rem;
 	font-weight: 600;
-	line-height: 1.2;
+	line-height: 1.5;
 	margin: 0;
 	color: var(--white);
 	transition: color 0.3s ease;
 }
 
-.hero-content h1 .italic {
+/* .hero-content h1 .italic {
 	font-style: italic;
-}
+} */
 
-.hero-content h1 .text-primary {
+/* .hero-content h1 .text-primary {
 	color: var(--primary);
-}
+} */
 
 .hero-content p {
 	font-size: 1.125rem;
@@ -2877,10 +2966,10 @@ h3 {
 	margin-bottom: 1.5rem;
 }
 
-.hero-content h1 .italic {
+/* .hero-content h1 .italic {
 	font-style: italic;
 	font-weight: 300;
-}
+} */
 
 .hero-content p {
 	font-size: 1.1rem;
@@ -3214,5 +3303,158 @@ h3 {
 		right: 20px;
 		width: 45px;
 		height: 45px;
+	}
+}
+
+/* Global typography system (final override for all pages) */
+:root {
+	--type-display: clamp(2.1rem, 1.55rem + 2vw, 3.1rem);
+	--type-page-title: clamp(1.9rem, 1.45rem + 1.4vw, 2.6rem);
+	--type-section-title: clamp(1.65rem, 1.3rem + 1.05vw, 2.2rem);
+	--type-card-title: clamp(1.18rem, 1.04rem + 0.45vw, 1.45rem);
+	--type-navbar: clamp(0.98rem, 0.94rem + 0.16vw, 1.04rem);
+	--type-logo: clamp(1.55rem, 1.35rem + 0.85vw, 2rem);
+	--type-body: clamp(0.98rem, 0.95rem + 0.14vw, 1.05rem);
+	--type-body-sm: clamp(0.9rem, 0.87rem + 0.1vw, 0.95rem);
+	--type-meta: clamp(0.78rem, 0.74rem + 0.12vw, 0.86rem);
+	--type-button: clamp(0.93rem, 0.9rem + 0.12vw, 0.98rem);
+}
+
+body {
+	font-size: var(--type-body);
+	line-height: 1.75;
+}
+
+p,
+li,
+.tradition-text,
+.newsletter-text,
+.footer-desc,
+.footer-newsletter p {
+	font-size: var(--type-body) !important;
+	line-height: 1.75;
+}
+
+small,
+.small,
+.footer-bottom p,
+.footer-links a,
+.view-all,
+.add-btn,
+.newsletter-form input,
+.newsletter-input,
+.search-input {
+	font-size: var(--type-body-sm) !important;
+}
+
+.hero-content h1 {
+	font-size: var(--type-display) !important;
+	line-height: 1.2;
+}
+
+.page-hero h1,
+.about-hero h1,
+.offering-header h1,
+.categories-page h1,
+.contact-page h1 {
+	font-size: var(--type-page-title) !important;
+	line-height: 1.22;
+}
+
+h1 {
+	font-size: var(--type-page-title);
+	line-height: 1.22;
+}
+
+h2,
+.section-header h2,
+.tradition-heading,
+.newsletter-heading {
+	font-size: var(--type-section-title) !important;
+	line-height: 1.28;
+}
+
+h3,
+.prop-card h3,
+.card-header h3,
+.quote-text {
+	font-size: var(--type-card-title) !important;
+	line-height: 1.35;
+}
+
+h4,
+h5,
+h6,
+.footer-links h4,
+.footer-newsletter h4 {
+	font-size: clamp(1rem, 0.95rem + 0.2vw, 1.12rem) !important;
+	line-height: 1.4;
+}
+
+.nav-links a,
+.sheet-links a,
+.icon-btn,
+.icon-btn span,
+.sheet-action-link {
+	font-size: var(--type-navbar) !important;
+	line-height: 1.35;
+}
+
+.logo {
+	font-size: var(--type-logo) !important;
+	line-height: 1.1;
+}
+
+.section-label,
+.card-header .category,
+.quote-author,
+.badge {
+	font-size: var(--type-meta) !important;
+	letter-spacing: 0.08em;
+}
+
+.btn,
+.btn-primary,
+.btn-outline,
+.btn-secondary,
+.btn-tradition,
+.btn-newsletter,
+.btn-join {
+	font-size: var(--type-button) !important;
+	line-height: 1.35;
+}
+
+input,
+select,
+textarea,
+button,
+label {
+	font-size: var(--type-body-sm);
+}
+
+@media (max-width: 768px) {
+	:root {
+		--type-display: clamp(1.8rem, 1.35rem + 2vw, 2.3rem);
+		--type-page-title: clamp(1.6rem, 1.25rem + 1.5vw, 2rem);
+		--type-section-title: clamp(1.4rem, 1.18rem + 1vw, 1.8rem);
+		--type-logo: clamp(1.3rem, 1.2rem + 0.7vw, 1.6rem);
+	}
+
+	.nav-links a,
+	.sheet-links a,
+	.icon-btn,
+	.icon-btn span,
+	.sheet-action-link {
+		font-size: 0.98rem !important;
+	}
+
+	.btn,
+	.btn-primary,
+	.btn-outline,
+	.btn-secondary,
+	.btn-tradition,
+	.btn-newsletter,
+	.btn-join {
+		font-size: 0.93rem !important;
 	}
 }
