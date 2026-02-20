@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,192 +15,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Navbar with white background and light shadow (same as About page) */
-        #navbar {
-            background: #ffffff !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-            border-bottom: none !important;
-        }
+    <link rel="stylesheet" href="css/pages/categories.css">
 
-        #navbar .nav-initial {
-            background: #ffffff !important;
-            backdrop-filter: none !important;
-        }
-
-        #navbar .nav-scrolled {
-            background: #ffffff !important;
-            backdrop-filter: none !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
-        }
-
-        #navbar .logo {
-            color: var(--foreground) !important;
-        }
-
-        #navbar .nav-links a {
-            color: var(--foreground) !important;
-        }
-
-        #navbar .icon-btn {
-            color: var(--foreground) !important;
-        }
-
-        #navbar .nav-links a.active {
-            color: #1c1917 !important;
-        }
-
-        .categories-page {
-            padding: 140px 24px 100px;
-            min-height: 100vh;
-            background: #ffffff;
-        }
-
-        .categories-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .categories-label {
-            color: #DA830A;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            display: block;
-            margin-bottom: 16px;
-            font-family: "Montserrat", sans-serif;
-            transition: color 0.3s ease;
-        }
-
-        .categories-title {
-            font-family: "Cormorant Garamond", serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 600;
-            color: var(--foreground);
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .category-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-        }
-
-        /* Category Card */
-        .category-card {
-            position: relative;
-            height: 500px;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 12px;
-            text-decoration: none;
-            display: block;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .category-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .category-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.2) 0%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(0, 0, 0, 0.6) 100%
-            );
-            transition: all 0.3s ease;
-        }
-
-        .category-card:hover .category-overlay {
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.3) 0%,
-                rgba(0, 0, 0, 0.5) 50%,
-                rgba(0, 0, 0, 0.7) 100%
-            );
-        }
-
-        .category-content {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 32px;
-            color: white;
-            z-index: 10;
-        }
-
-        .category-content h2 {
-            font-family: "Cormorant Garamond", serif;
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 600;
-            margin: 0 0 12px 0;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .category-content p {
-            font-size: 1rem;
-            font-weight: 300;
-            max-width: 300px;
-            margin: 0;
-            opacity: 0.95;
-            line-height: 1.6;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .categories-page {
-                padding: 120px 24px 80px;
-            }
-
-            .categories-header {
-                margin-bottom: 48px;
-            }
-
-            .category-card {
-                height: 400px;
-            }
-
-            .category-content h2 {
-                font-size: 2rem;
-            }
-
-            .category-content p {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -366,27 +182,8 @@
     <script src="js/translations.js"></script>
     <script src="js/language.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        // Scroll to Top Button
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
+    <script src="js/pages/categories.js"></script>
 
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        lucide.createIcons();
-    </script>
 </body>
 
 </html>

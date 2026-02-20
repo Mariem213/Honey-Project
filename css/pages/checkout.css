@@ -1,0 +1,248 @@
+﻿/* Navbar with white background and light shadow (same as About page) */
+#navbar {
+	background: #ffffff !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	border-bottom: none !important;
+	padding: 1.25rem 0 !important;
+}
+
+#navbar .logo {
+	color: var(--foreground) !important;
+}
+
+#navbar .nav-links a {
+	color: var(--foreground) !important;
+}
+
+#navbar .icon-btn {
+	color: var(--foreground) !important;
+}
+
+#navbar .nav-initial {
+	background: #ffffff !important;
+	backdrop-filter: none !important;
+}
+
+#navbar .nav-scrolled {
+	background: #ffffff !important;
+	backdrop-filter: none !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+#navbar .nav-links a.active {
+	color: #1c1917 !important;
+}
+
+.checkout-page {
+	background-color: #faf9f7;
+	min-height: 100vh;
+	padding-top: 140px;
+	padding-bottom: 80px;
+}
+
+.checkout-container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
+.back-link {
+	display: inline-flex;
+	align-items: center;
+	color: #78716c;
+	text-decoration: none;
+	font-size: 14px;
+	margin-bottom: 32px;
+	transition: color 0.3s;
+	font-family: "Montserrat", sans-serif;
+}
+
+.back-link:hover {
+	color: #da830a;
+	transition: all 0.3s ease;
+}
+
+.checkout-page h1 {
+	font-family: "Cormorant Garamond", serif;
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin-bottom: 40px;
+	color: var(--foreground);
+}
+
+.form-section {
+	margin-bottom: 2.5rem;
+}
+
+.form-section h3 {
+	font-family: "Cormorant Garamond", serif;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	color: var(--foreground);
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+}
+
+.field label {
+	font-family: "Montserrat", sans-serif;
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: var(--foreground);
+	margin-bottom: 0.5rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.input-style {
+	width: 100%;
+	padding: 14px 16px;
+	border: 1px solid #e7e5e4;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	background-color: white;
+	color: var(--foreground);
+	transition: all 0.3s ease;
+	outline: none;
+}
+
+.input-style:focus {
+	border-color: #da830a;
+	box-shadow: 0 0 0 3px rgba(218, 131, 10, 0.1);
+	transition: all 0.3s ease;
+}
+
+.input-style::placeholder {
+	color: #a8a29e;
+}
+
+/* Grid Helpers */
+.grid-md-2 {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+}
+
+.grid-md-3 {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+}
+
+@media (min-width: 768px) {
+	.grid-md-2 {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.grid-md-3 {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+/* Custom Radio Styling */
+.shipping-method {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 18px 20px;
+	border: 1px solid #e7e5e4;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	background-color: white;
+}
+
+.shipping-method:hover {
+	border-color: #da830a;
+	transition: all 0.3s ease;
+}
+
+.shipping-method > div {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.shipping-method input[type="radio"] {
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	cursor: pointer;
+	accent-color: #da830a;
+	transition: all 0.3s ease;
+}
+
+.shipping-method span:not(:last-child) {
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	color: var(--foreground);
+}
+
+.shipping-method span:last-child {
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--foreground);
+}
+
+/* Logic for active radio background */
+.shipping-method:has(input:checked) {
+	border-color: #da830a;
+	background-color: rgba(218, 131, 10, 0.05);
+	transition: all 0.3s ease;
+}
+
+.btn-continue {
+	width: 100%;
+	background: transparent;
+	border: 2px solid #da830a;
+	color: #da830a;
+	padding: 18px 32px;
+	border-radius: 50px;
+	font-size: 1rem;
+	font-weight: 500;
+	font-family: "Montserrat", sans-serif;
+	cursor: pointer;
+	margin-top: 40px;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	box-shadow: 0 2px 8px rgba(218, 131, 10, 0.15);
+}
+
+.btn-continue:hover {
+	background: #da830a;
+	color: white;
+	border-color: #da830a;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(218, 131, 10, 0.3);
+}
+
+.btn-continue:active {
+	transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+	.checkout-page {
+		padding-top: 120px;
+		padding-bottom: 60px;
+	}
+
+	.checkout-page h1 {
+		font-size: 2rem;
+		margin-bottom: 32px;
+	}
+
+	.form-section h3 {
+		font-size: 1.25rem;
+	}
+
+	.grid-md-3 .field:last-child {
+		grid-column: span 1;
+	}
+}

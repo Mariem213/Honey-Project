@@ -1,0 +1,247 @@
+﻿/* Navbar with white background and light shadow */
+#navbar {
+	background: #ffffff !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+	border-bottom: none !important;
+}
+
+#navbar .nav-initial {
+	background: #ffffff !important;
+	backdrop-filter: none !important;
+}
+
+#navbar .nav-scrolled {
+	background: #ffffff !important;
+	backdrop-filter: none !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+#navbar .logo {
+	color: #1c1917 !important;
+}
+
+#navbar .nav-links a {
+	color: #1c1917 !important;
+}
+
+#navbar .nav-links a.active {
+	color: #1c1917 !important;
+}
+
+#navbar .icon-btn {
+	color: #1c1917 !important;
+}
+
+.about-hero {
+	padding: 180px 24px 96px;
+	background-color: #faf9f7;
+	text-align: center;
+}
+
+.heritage-section {
+	padding: 96px 24px;
+	background-color: #ffffff;
+}
+
+/* Floating Badge Logic */
+.img-container {
+	position: relative;
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+.heritage-img {
+	width: 100%;
+	aspect-ratio: 4/5;
+	object-fit: cover;
+	border-radius: 24px;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.years-badge {
+	position: absolute;
+	bottom: -30px;
+	right: -30px;
+	background: #da830a;
+	color: white;
+	padding: 32px 28px;
+	border-radius: 999px;
+	text-align: center;
+	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+	z-index: 10;
+	transition: all 0.3s ease;
+}
+
+.years-badge .years-number {
+	font-family: "Cormorant Garamond", serif;
+	font-size: 2rem;
+	font-weight: 700;
+	font-style: italic;
+	display: block;
+	line-height: 1;
+}
+
+.years-badge .years-text {
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin-top: 4px;
+	font-family: "Montserrat", sans-serif;
+}
+
+/* Light Values Section */
+.values-dark {
+	background-color: #faf9f7;
+	color: #1c1917;
+	padding: 96px 24px;
+}
+
+.value-card {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.value-icon-box {
+	width: 80px;
+	height: 80px;
+	background: rgba(218, 131, 10, 0.1);
+	border-radius: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #da830a;
+	margin-bottom: 8px;
+	transition: all 0.3s ease;
+}
+
+.value-icon-box i {
+	width: 36px;
+	height: 36px;
+	stroke-width: 1.5;
+}
+
+.grid-2 {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 64px;
+	align-items: center;
+}
+
+.about-text h2 {
+	font-family: "Cormorant Garamond", serif;
+	font-size: clamp(2rem, 5vw, 3rem);
+	line-height: 1.1;
+	margin-bottom: 32px;
+	color: #1c1917;
+	font-style: italic;
+}
+
+.about-text p {
+	color: #78716c;
+	font-size: 1.125rem;
+	font-weight: 300;
+	line-height: 1.8;
+	margin-bottom: 24px;
+}
+
+.icon-stat {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.icon-stat i {
+	width: 24px;
+	height: 24px;
+	margin-bottom: 8px;
+}
+
+.icon-stat h4 {
+	font-weight: 600;
+	margin-bottom: 4px;
+	color: #1c1917;
+	font-size: 1rem;
+}
+
+.icon-stat p {
+	font-size: 14px;
+	color: #78716c;
+	margin: 0;
+}
+
+.values-header {
+	text-align: center;
+	margin-bottom: 64px;
+}
+
+.values-header h2 {
+	font-family: "Cormorant Garamond", serif;
+	font-size: clamp(2rem, 4vw, 2.5rem);
+	margin-bottom: 16px;
+	color: #1c1917;
+	font-style: italic;
+}
+
+.values-underline {
+	width: 80px;
+	height: 4px;
+	background: #da830a;
+	margin: 0 auto;
+	transition: all 0.3s ease;
+}
+
+.value-card h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #1c1917;
+	margin-bottom: 8px;
+}
+
+.value-card p {
+	color: #78716c;
+	font-weight: 300;
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+	.grid-2 {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.years-badge {
+		bottom: -30px;
+		right: -30px;
+	}
+}
+
+@media (max-width: 768px) {
+	.about-hero {
+		padding: 140px 24px 64px;
+	}
+
+	.heritage-section {
+		padding: 64px 24px;
+	}
+
+	.values-dark {
+		padding: 64px 24px;
+	}
+
+	.years-badge {
+		position: relative;
+		bottom: auto;
+		right: auto;
+		margin: -20px auto 0;
+		padding: 24px 20px;
+	}
+
+	.icon-stat {
+		margin-bottom: 24px;
+	}
+}
