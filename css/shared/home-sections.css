@@ -735,6 +735,10 @@ html[dir="ltr"] .btn-newsletter {
 }
 
 @media (max-width: 768px) {
+	.newsletter-content {
+		padding: 0 1rem;
+	}
+
 	.newsletter-heading {
 		font-size: 2.5rem;
 	}
@@ -744,18 +748,29 @@ html[dir="ltr"] .btn-newsletter {
 		margin-bottom: 2rem;
 	}
 
-	.newsletter-form-main {
-		flex-direction: column;
+	.newsletter-form-main,
+	html[dir="ltr"] .newsletter-form-main,
+	html[dir="rtl"] .newsletter-form-main {
+		display: grid;
+		grid-template-columns: 1fr;
 		gap: 1rem;
-		max-width: 100%;
+		width: 100%;
+		max-width: 420px;
+		direction: ltr;
 	}
 
-	.newsletter-input {
+	.newsletter-input,
+	html[dir="ltr"] .newsletter-input,
+	html[dir="rtl"] .newsletter-input {
+		inline-size: 100%;
+		min-width: 100%;
+		min-height: 52px;
 		border-radius: 50px;
-		width: 100%;
+		text-align: left;
 	}
 
 	.btn-newsletter {
+		min-height: 52px;
 		width: 100%;
 		border-radius: 50px;
 	}
