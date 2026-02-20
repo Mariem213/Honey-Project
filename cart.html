@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | L'Or Doré</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Navbar with white background and light shadow (same as About page) */
+        #navbar {
+            background: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+            border-bottom: none !important;
+        }
+
+        #navbar .nav-initial {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+        }
+
+        #navbar .nav-scrolled {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        #navbar .logo {
+            color: #1c1917 !important;
+        }
+
+        #navbar .nav-links a {
+            color: #1c1917 !important;
+        }
+
+        #navbar .icon-btn {
+            color: #1c1917 !important;
+        }
+
+        #navbar .nav-links a.active {
+            color: #1c1917 !important;
+        }
+
+        .cart-page {
+            background-color: #fbfaf9;
+            min-height: 100vh;
+            padding-top: 120px;
+            padding-bottom: 80px;
+        }
+
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .cart-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 48px;
+            color: #1c1917;
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        @media (min-width: 1024px) {
+            .cart-grid {
+                grid-template-columns: 1.5fr 1fr;
+                gap: 64px;
+            }
+        }
+
+        .cart-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 24px;
+            padding: 32px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .item-img {
+            width: 120px;
+            height: 120px;
+            background: #f5f5f4;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .item-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .item-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            color: #1c1917;
+        }
+
+        .item-info p {
+            color: #78716c;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .item-total {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1c1917;
+        }
+
+        .item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #f5f5f4;
+            padding: 8px 16px;
+            border-radius: 999px;
+        }
+
+        .qty-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #78716c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            color: #DA830A;
+            transition: all 0.3s ease;
+        }
+
+        .qty-val {
+            font-weight: 500;
+            min-width: 24px;
+            text-align: center;
+            color: #1c1917;
+        }
+
+        .remove-btn {
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #78716c;
+            padding: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .remove-btn:hover {
+            color: #ef4444;
+        }
+
+        .cart-summary {
+            position: relative;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 120px;
+        }
+
+        .summary-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1c1917;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #57534e;
+        }
+
+        .summary-row.tax-row {
+            margin-bottom: 20px;
+        }
+
+        .total-row {
+            border-top: 1px solid #e7e5e4;
+            padding-top: 20px;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #1c1917;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: transparent;
+            border: 2px solid #DA830A;
+            color: #DA830A;
+            padding: 18px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            margin-top: 32px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 8px rgba(218, 131, 10, 0.15);
+        }
+
+        .btn-checkout:hover {
+            background: #DA830A;
+            color: white;
+            border-color: #DA830A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(218, 131, 10, 0.3);
+        }
+
+        .btn-checkout:active {
+            transform: translateY(0);
+        }
+
+        .free-shipping-note {
+            text-align: center;
+            font-size: 12px;
+            color: #78716c;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar" class="nav-initial">
+        <div class="nav-container max-w-7xl">
+            <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>ré</a>
+
+            <div class="nav-links hidden-mobile">
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="lang-toggle" class="icon-btn"><i data-lucide="globe"></i><span>EN</span></button>
+                <button id="search-toggle" class="icon-btn"><i data-lucide="search"></i></button>
+                <div id="search-container" class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search products..." data-i18n-placeholder="nav.search" autocomplete="off">
+                    <button id="search-close" class="search-close"><i data-lucide="x"></i></button>
+                </div>
+                <a href="/auth.html" class="icon-btn hide-mobile"><i data-lucide="user"></i></a>
+                <a href="/cart.html" class="icon-btn cart-btn hide-mobile">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-dot"></span>
+                </a>
+                <button id="menu-toggle" class="icon-btn md-hide"><i data-lucide="menu"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-sheet">
+        <div class="sheet-content">
+            <div class="sheet-header">
+                <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>ré</a>
+                <button id="menu-close" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="sheet-links">
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+            </div>
+            <div class="sheet-actions">
+                <a href="/auth.html" class="sheet-action-link">
+                    <i data-lucide="user"></i>
+                    <span data-i18n="nav.login">Login</span>
+                </a>
+                <a href="/cart.html" class="sheet-action-link">
+                    <i data-lucide="shopping-bag"></i>
+                    <span data-i18n="nav.cart">Add to Cart</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="cart-page">
+        <div class="cart-container">
+            <h1 class="cart-title" data-i18n="cart.title">Shopping Cart</h1>
+
+            <div class="cart-grid">
+                <div class="cart-items-list" id="cart-items-container">
+                    <div class="cart-item" data-price="24.00">
+                        <img src="assets/shop1Honey.png" alt="Wildflower Reserve" class="item-img">
+                        <div class="item-details">
+                            <div class="item-header">
+                                <div class="item-info">
+                                    <h3>Wildflower Reserve</h3>
+                                    <p><span data-i18n="cart.size">Size:</span> 500g</p>
+                                </div>
+                                <span class="item-total">$48.00</span>
+                            </div>
+                            <div class="item-actions">
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus"><i data-lucide="minus" style="width: 14px;"></i></button>
+                                    <span class="qty-val">2</span>
+                                    <button class="qty-btn plus"><i data-lucide="plus" style="width: 14px;"></i></button>
+                                </div>
+                                <button class="remove-btn"><i data-lucide="trash-2" style="width: 18px;"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item" data-price="32.00">
+                        <img src="assets/shop2Honey.png" alt="Royal Acacia" class="item-img">
+                        <div class="item-details">
+                            <div class="item-header">
+                                <div class="item-info">
+                                    <h3>Royal Acacia</h3>
+                                    <p><span data-i18n="cart.size">Size:</span> 350g</p>
+                                </div>
+                                <span class="item-total">$32.00</span>
+                            </div>
+                            <div class="item-actions">
+                                <div class="quantity-control">
+                                    <button class="qty-btn minus"><i data-lucide="minus" style="width: 14px;"></i></button>
+                                    <span class="qty-val">1</span>
+                                    <button class="qty-btn plus"><i data-lucide="plus" style="width: 14px;"></i></button>
+                                </div>
+                                <button class="remove-btn"><i data-lucide="trash-2" style="width: 18px;"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3 class="summary-title" data-i18n="cart.orderSummary">Order Summary</h3>
+                        <div class="summary-row">
+                            <span data-i18n="cart.subtotal">Subtotal</span>
+                            <span id="subtotal-val">$80.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span data-i18n="cart.shipping">Shipping</span>
+                            <span data-i18n="cart.shippingCalc">Calculated at checkout</span>
+                        </div>
+                        <div class="summary-row tax-row">
+                            <span>Tax</span>
+                            <span id="tax-val">$0.00</span>
+                        </div>
+                        <div class="total-row summary-row">
+                            <span data-i18n="cart.total">Total</span>
+                            <span id="total-val">$80.00</span>
+                        </div>
+
+                        <a href="checkout.html" style="text-decoration: none;">
+                            <button class="btn-checkout">
+                                <span data-i18n="cart.checkout">Proceed to Checkout</span> <i data-lucide="arrow-right" style="width: 18px;"></i>
+                            </button>
+                        </a>
+                        <p class="free-shipping-note">
+                            Free shipping on orders over $100
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="max-w-7xl">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="logo-text">L'Or Doré</h3>
+                    <p class="footer-desc" data-i18n="footer.desc">
+                        Purveyors of the finest, ethically sourced honey from around the world.
+                        Nature's liquid gold, delivered to your doorstep.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.explore">Explore</h4>
+                    <ul>
+                        <li><a href="/offering.html" data-i18n="footer.shopAll">Shop All</a></li>
+                        <li><a href="/categories.html" data-i18n="footer.categories">Categories</a></li>
+                        <li><a href="/#story" data-i18n="footer.ourStory">Our Story</a></li>
+                        <li><a href="/contact.html" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="/terms.html" data-i18n="footer.terms">Terms of Service</a></li>
+                        <li><a href="/shipping.html" data-i18n="footer.shipping">Shipping Info</a></li>
+                        <li><a href="/returns.html" data-i18n="footer.returns">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4 data-i18n="footer.staySweet">Stay Sweet</h4>
+                    <p data-i18n="footer.subscribeDesc">Subscribe for exclusive offers and recipes.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email address" data-i18n-placeholder="footer.emailPlaceholder" required>
+                        <button type="submit" class="btn-join" data-i18n="footer.join">Join</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2026 L'Or Doré Honey Co. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+        const CART_KEY = 'honeyCart';
+
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        function saveCart(items) {
+            localStorage.setItem(CART_KEY, JSON.stringify(items));
+        }
+
+        // Logic to update totals
+        function updateCartTotals() {
+            let subtotal = 0;
+            const cartItems = [];
+            document.querySelectorAll('.cart-item').forEach(item => {
+                const price = parseFloat(item.dataset.price);
+                const qty = parseInt(item.querySelector('.qty-val').innerText);
+                const itemTotal = price * qty;
+                const name = item.querySelector('.item-info h3')?.innerText?.trim() || 'Product';
+                const sizeText = item.querySelector('.item-info p')?.innerText || '';
+                const size = sizeText.split(':')[1]?.trim() || '';
+                const image = item.querySelector('.item-img')?.getAttribute('src') || '';
+
+                item.querySelector('.item-total').innerText = `$${itemTotal.toFixed(2)}`;
+                subtotal += itemTotal;
+                cartItems.push({
+                    name,
+                    size,
+                    qty,
+                    unitPrice: price,
+                    total: itemTotal,
+                    image
+                });
+            });
+
+            const tax = 0; // Tax calculation can be added here
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal-val').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('tax-val').innerText = `$${tax.toFixed(2)}`;
+            document.getElementById('total-val').innerText = `$${total.toFixed(2)}`;
+            saveCart(cartItems);
+        }
+
+        // Quantity Listeners
+        document.querySelectorAll('.qty-btn.plus').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let valObj = btn.parentElement.querySelector('.qty-val');
+                valObj.innerText = parseInt(valObj.innerText) + 1;
+                updateCartTotals();
+                lucide.createIcons();
+            });
+        });
+
+        document.querySelectorAll('.qty-btn.minus').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let valObj = btn.parentElement.querySelector('.qty-val');
+                let current = parseInt(valObj.innerText);
+                if (current > 1) {
+                    valObj.innerText = current - 1;
+                    updateCartTotals();
+                    lucide.createIcons();
+                }
+            });
+        });
+
+        // Remove item functionality
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cartItem = btn.closest('.cart-item');
+                cartItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                cartItem.style.opacity = '0';
+                cartItem.style.transform = 'translateX(-20px)';
+                setTimeout(() => {
+                    cartItem.remove();
+                    updateCartTotals();
+                }, 300);
+            });
+        });
+
+        // Initialize totals on page load
+        updateCartTotals();
+    </script>
+</body>
+
+</html>

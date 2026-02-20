@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Or Doré</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav id="navbar" class="nav-initial">
+        <div class="nav-container max-w-7xl">
+            <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>ré</a>
+
+            <div class="nav-links hidden-mobile">
+                <a href="/" class="active" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="lang-toggle" class="icon-btn"><i data-lucide="globe"></i><span>EN</span></button>
+                <button id="search-toggle" class="icon-btn"><i data-lucide="search"></i></button>
+                <div id="search-container" class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search products..."
+                        data-i18n-placeholder="nav.search" autocomplete="off">
+                    <button id="search-close" class="search-close"><i data-lucide="x"></i></button>
+                </div>
+                <a href="/auth.html" class="icon-btn hide-mobile"><i data-lucide="user"></i></a>
+                <a href="/cart.html" class="icon-btn cart-btn hide-mobile">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-dot"></span>
+                </a>
+                <button id="menu-toggle" class="icon-btn md-hide"><i data-lucide="menu"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-sheet">
+        <div class="sheet-content">
+            <div class="sheet-header">
+                <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>ré</a>
+                <button id="menu-close" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="sheet-links">
+                <a href="/" class="active" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+            </div>
+            <div class="sheet-actions">
+                <a href="/auth.html" class="sheet-action-link">
+                    <i data-lucide="user"></i>
+                    <span data-i18n="nav.login">Login</span>
+                </a>
+                <a href="/cart.html" class="sheet-action-link">
+                    <i data-lucide="shopping-bag"></i>
+                    <span data-i18n="nav.cart">Add to Cart</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <img src="assets/headerHoney-2.jpeg" alt="Honey Drip" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <!-- <span class="badge" data-i18n="hero.badge">EST. 2026</span> -->
+            <h1><span data-i18n="hero.title">Nature's</span> <br><span class="italic text-primary"
+                    data-i18n="hero.titleItalic">Liquid Gold</span></h1>
+            <p data-i18n="hero.description">Experience the purest essence of natural, hand-harvested, ethically sourced,
+                and crafted for the
+                connoisseur.</p>
+            <div class="hero-btns">
+                <a href="/offering.html" class="btn btn-primary" data-i18n="hero.btnDiscover">Discover Collection</a>
+                <a href="/categories.html" class="btn btn-outline" data-i18n="hero.btnExplore">Explore Categories</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="value-props section-padding">
+        <section class="advatages section-padding">
+            <div class="max-w-7xl grid-3">
+                <div class="prop-card">
+                    <div class="prop-icon"><i data-lucide="leaf"></i></div>
+                    <h3 data-i18n="valueProps.organic.title">100% Organic</h3>
+                    <p data-i18n="valueProps.organic.desc">Sourced from untouched meadows where bees roam free among
+                        wildflowers. No additives, ever.</p>
+                </div>
+                <div class="prop-card">
+                    <div class="prop-icon"><i data-lucide="award"></i></div>
+                    <h3 data-i18n="valueProps.award.title">Award Winning</h3>
+                    <p data-i18n="valueProps.award.desc">Recognized globally for superior taste, texture, and purity. A
+                        gold
+                        standard in every jar.</p>
+                </div>
+                <div class="prop-card">
+                    <div class="prop-icon"><i data-lucide="star"></i></div>
+                    <h3 data-i18n="valueProps.ethical.title">Ethically Harvested</h3>
+                    <p data-i18n="valueProps.ethical.desc">We prioritize the health of our bees and the environment
+                        above
+                        all else. Sustainable sweetness.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured section-padding">
+            <div class="max-w-7xl">
+                <div class="section-header">
+                    <div>
+                        <span class="section-label" data-i18n="featured.label">BEST SELLERS</span>
+                        <h2 data-i18n="featured.title">Curated Selections</h2>
+                    </div>
+                    <a href="/offering.html" class="view-all"><span data-i18n="featured.viewAll">View all
+                            products</span> <i data-lucide="arrow-right"></i></a>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/shop1Honey.png" alt="Wildflower Reserve">
+                            <div class="card-overlay">
+                                <a href="/product.html" class="btn btn-secondary" data-i18n="featured.viewProduct">View
+                                    Product</a>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-header">
+                                <div>
+                                    <span class="category" data-i18n="featured.category.signature">SIGNATURE</span>
+                                    <h3>Wildflower Reserve</h3>
+                                </div>
+                                <span class="price">$24.00</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="quantity-stepper" data-product-id="1">
+                                    <button type="button" class="qty-btn qty-minus"
+                                        aria-label="Decrease quantity">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn qty-plus"
+                                        aria-label="Increase quantity">+</button>
+                                </div>
+                                <button class="add-btn"><span data-i18n="featured.addToBag">ADD TO BAG</span> <i
+                                        data-lucide="arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/shop2Honey.png" alt="Royal Acacia">
+                            <div class="card-overlay">
+                                <a href="/product/2" class="btn btn-secondary" data-i18n="featured.viewProduct">View
+                                    Product</a>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-header">
+                                <div>
+                                    <span class="category" data-i18n="featured.category.premium">PREMIUM</span>
+                                    <h3>Royal Acacia</h3>
+                                </div>
+                                <span class="price">$32.00</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="quantity-stepper" data-product-id="2">
+                                    <button type="button" class="qty-btn qty-minus"
+                                        aria-label="Decrease quantity">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn qty-plus"
+                                        aria-label="Increase quantity">+</button>
+                                </div>
+                                <button class="add-btn"><span data-i18n="featured.addToBag">ADD TO BAG</span> <i
+                                        data-lucide="arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="card-img-wrapper">
+                            <img src="assets/shop3Honey.png" alt="Raw Honeycomb">
+                            <div class="card-overlay">
+                                <a href="/product/3" class="btn btn-secondary" data-i18n="featured.viewProduct">View
+                                    Product</a>
+                            </div>
+                        </div>
+                        <div class="card-info">
+                            <div class="card-header">
+                                <div>
+                                    <span class="category" data-i18n="featured.category.raw">RAW</span>
+                                    <h3>Raw Honeycomb</h3>
+                                </div>
+                                <span class="price">$18.00</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="quantity-stepper" data-product-id="3">
+                                    <button type="button" class="qty-btn qty-minus"
+                                        aria-label="Decrease quantity">-</button>
+                                    <span class="qty-value">1</span>
+                                    <button type="button" class="qty-btn qty-plus"
+                                        aria-label="Increase quantity">+</button>
+                                </div>
+                                <button class="add-btn"><span data-i18n="featured.addToBag">ADD TO BAG</span> <i
+                                        data-lucide="arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tradition section-padding">
+            <div class="max-w-7xl">
+                <div class="tradition-grid">
+                    <div class="tradition-content">
+                        <h2 class="tradition-heading">
+                            <span data-i18n="tradition.title">Rooted in</span> <span class="text-primary"
+                                data-i18n="tradition.titleHighlight">Tradition</span>
+                        </h2>
+                        <p class="tradition-text" data-i18n="tradition.text1">
+                            Our journey began three generations ago in the rolling hills of Provence. What started as a
+                            family passion has blossomed into a commitment to preserve the art of traditional
+                            beekeeping.
+                        </p>
+                        <p class="tradition-text" data-i18n="tradition.text2">
+                            We believe that honey is more than just a sweetener; it is a snapshot of time and place.
+                            Every jar tells the story of the flowers that bloomed that season and the diligent work of
+                            the bees that visited them.
+                        </p>
+                        <a href="/about.html" class="btn-tradition" data-i18n="tradition.btnRead">Read Our Full
+                            Story</a>
+                    </div>
+                    <div class="tradition-image-wrapper">
+                        <img src="assets/headerHoney-2.jpeg" alt="Honey Dipper" class="tradition-image">
+                        <div class="tradition-overlay"></div>
+                        <div class="quote-box">
+                            <p class="quote-text" data-i18n="tradition.quote">"The secret to great honey is doing as
+                                little to it as possible."</p>
+                            <p class="quote-author"><span class="quote-dash">-</span> <span class="founder-highlight"
+                                    data-i18n="tradition.quoteAuthor">FOUNDER</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter section-padding">
+            <div class="max-w-7xl">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-heading" data-i18n="newsletter.title">Join the Hive</h2>
+                    <p class="newsletter-text" data-i18n="newsletter.description">Subscribe to receive exclusive access
+                        to limited batch releases and
+                        seasonal offerings.</p>
+                    <form class="newsletter-form-main">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input"
+                            data-i18n-placeholder="newsletter.placeholder" required>
+                        <button type="submit" class="btn-newsletter" data-i18n="newsletter.btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <footer class="footer section-padding">
+        <div class="max-w-7xl">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="logo-text">L'Or Doré</h3>
+                    <p class="footer-desc" data-i18n="footer.desc">
+                        Purveyors of the finest, ethically sourced honey from around the world.
+                        Nature's liquid gold, delivered to your doorstep.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.explore">Explore</h4>
+                    <ul>
+                        <li><a href="/offering.html" data-i18n="footer.shopAll">Shop All</a></li>
+                        <li><a href="/categories.html" data-i18n="footer.categories">Categories</a></li>
+                        <li><a href="/#story" data-i18n="footer.ourStory">Our Story</a></li>
+                        <li><a href="/contact.html" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="/terms.html" data-i18n="footer.terms">Terms of Service</a></li>
+                        <li><a href="/shipping.html" data-i18n="footer.shipping">Shipping Info</a></li>
+                        <li><a href="/returns.html" data-i18n="footer.returns">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4 data-i18n="footer.staySweet">Stay Sweet</h4>
+                    <p data-i18n="footer.subscribeDesc">Subscribe for exclusive offers and recipes.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email address" data-i18n-placeholder="footer.emailPlaceholder"
+                            required>
+                        <button type="submit" class="btn-join" data-i18n="footer.join">Join</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2026 L'Or Doré Honey Co. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

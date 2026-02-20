@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | L'Or Doré</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Navbar with white background and light shadow (same as About page) */
+        #navbar {
+            background: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+            border-bottom: none !important;
+        }
+
+        #navbar .nav-initial {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+        }
+
+        #navbar .nav-scrolled {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        #navbar .logo {
+            color: var(--foreground) !important;
+        }
+
+        #navbar .nav-links a {
+            color: var(--foreground) !important;
+            position: relative;
+        }
+
+        #navbar .nav-links a.active {
+            color: #1c1917 !important;
+        }
+
+        #navbar .icon-btn {
+            color: var(--foreground) !important;
+        }
+
+        .contact-page {
+            background-color: #fbfaf9;
+            min-height: 100vh;
+            padding: 160px 24px 80px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        @media (min-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+            }
+        }
+
+        /* Contact Info Section */
+        .contact-info {
+            padding-top: 20px;
+        }
+
+        .contact-label {
+            color: #DA830A;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-heading {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--foreground);
+            font-weight: 600;
+        }
+
+        .contact-intro {
+            color: #78716c;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 48px;
+            max-width: 500px;
+        }
+
+        /* Info Items */
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .icon-circle {
+            min-width: 48px;
+            height: 48px;
+            padding: 12px;
+            background: rgba(218, 131, 10, 0.1);
+            border-radius: 50%;
+            color: #DA830A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .icon-circle i {
+            width: 20px;
+            height: 20px;
+            stroke-width: 1.5;
+        }
+
+        .info-content h4 {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--foreground);
+        }
+
+        .info-content p {
+            color: #78716c;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Form Card */
+        .contact-card {
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--foreground);
+        }
+
+        .input-style {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e7e5e4;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+            color: var(--foreground);
+        }
+
+        .input-style:focus {
+            border-color: #DA830A;
+            box-shadow: 0 0 0 3px rgba(218, 131, 10, 0.1);
+        }
+
+        .input-style::placeholder {
+            color: #a8a29e;
+        }
+
+        .contact-form textarea {
+            width: 100%;
+            border: 1px solid #e7e5e4;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 14px;
+            min-height: 150px;
+            outline: none;
+            transition: all 0.3s ease;
+            resize: vertical;
+            background: white;
+            color: var(--foreground);
+        }
+
+        .contact-form textarea:focus {
+            border-color: #DA830A;
+            box-shadow: 0 0 0 3px rgba(218, 131, 10, 0.1);
+        }
+
+        .contact-form textarea::placeholder {
+            color: #a8a29e;
+        }
+
+        .btn-send {
+            width: 100%;
+            background: transparent;
+            border: 2px solid #DA830A;
+            color: #DA830A;
+            padding: 18px 24px;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(218, 131, 10, 0.15);
+        }
+
+        .btn-send:hover {
+            background: #DA830A;
+            color: white;
+            border-color: #DA830A;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(218, 131, 10, 0.3);
+        }
+
+        .btn-send:hover i {
+            transform: translateX(4px);
+        }
+
+        .btn-send i {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .contact-page {
+                padding: 120px 16px 60px;
+            }
+
+            .contact-card {
+                padding: 32px 24px;
+            }
+
+            .contact-heading {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar" class="nav-initial">
+        <div class="nav-container max-w-7xl">
+            <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>ré</a>
+
+            <div class="nav-links hidden-mobile">
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" class="active" data-i18n="nav.contact">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="lang-toggle" class="icon-btn"><i data-lucide="globe"></i><span>EN</span></button>
+                <button id="search-toggle" class="icon-btn"><i data-lucide="search"></i></button>
+                <div id="search-container" class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search products..." autocomplete="off">
+                    <button id="search-close" class="search-close"><i data-lucide="x"></i></button>
+                </div>
+                <a href="/auth.html" class="icon-btn hide-mobile"><i data-lucide="user"></i></a>
+                <a href="/cart.html" class="icon-btn cart-btn hide-mobile">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-dot"></span>
+                </a>
+                <button id="menu-toggle" class="icon-btn md-hide"><i data-lucide="menu"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-sheet">
+        <div class="sheet-content">
+            <div class="sheet-header">
+                <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>ré</a>
+                <button id="menu-close" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="sheet-links">
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" class="active" data-i18n="nav.contact">Contact</a>
+            </div>
+            <div class="sheet-actions">
+                <a href="/auth.html" class="sheet-action-link">
+                    <i data-lucide="user"></i>
+                    <span data-i18n="nav.login">Login</span>
+                </a>
+                <a href="/cart.html" class="sheet-action-link">
+                    <i data-lucide="shopping-bag"></i>
+                    <span data-i18n="nav.cart">Add to Cart</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="contact-page">
+        <div class="max-w-7xl">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="contact-label" data-i18n="contact.label">Contact Us</span>
+                    <h1 class="contact-heading" data-i18n="contact.title">We'd love to hear from you.</h1>
+                    <p class="contact-intro" data-i18n="contact.intro">
+                        Whether you have a question about our collections, shipping, or just want to talk about
+                        bees, we're here to help.
+                    </p>
+
+                    <div>
+                        <div class="info-item">
+                            <div class="icon-circle"><i data-lucide="mail"></i></div>
+                            <div class="info-content">
+                                <h4 data-i18n="contact.email">Email</h4>
+                                <p>concierge@lordore.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon-circle"><i data-lucide="phone"></i></div>
+                            <div class="info-content">
+                                <h4 data-i18n="contact.phone">Phone</h4>
+                                <p>+1 (800) 555-HONEY</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon-circle"><i data-lucide="map-pin"></i></div>
+                            <div class="info-content">
+                                <h4 data-i18n="contact.address">Address</h4>
+                                <p data-i18n="contact.addressText">123 Honey Lane, Provence, France 84000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <form class="contact-form">
+                        <h3 data-i18n="contact.formTitle" style="margin-bottom: 1.5rem;">Send us a message</h3>
+                        <div class="form-row">
+                            <div class="field">
+                                <label for="fullname" data-i18n="contact.name">Name</label>
+                                <input type="text" id="fullname" name="fullname" placeholder="John Doe" class="input-style" data-i18n-placeholder="contact.namePlaceholder" required>
+                            </div>
+                            <div class="field">
+                                <label for="email" data-i18n="contact.email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" class="input-style" data-i18n-placeholder="contact.emailPlaceholder" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="message" data-i18n="contact.message">Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help?" data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send">
+                            <span data-i18n="contact.submit">Send Message</span> <i data-lucide="send"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="max-w-7xl">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="logo-text">L'Or Doré</h3>
+                    <p class="footer-desc" data-i18n="footer.desc">
+                        Purveyors of the finest, ethically sourced honey from around the world.
+                        Nature's liquid gold, delivered to your doorstep.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.explore">Explore</h4>
+                    <ul>
+                        <li><a href="/offering.html" data-i18n="footer.shopAll">Shop All</a></li>
+                        <li><a href="/categories.html" data-i18n="footer.categories">Categories</a></li>
+                        <li><a href="/#story" data-i18n="footer.ourStory">Our Story</a></li>
+                        <li><a href="/contact.html" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="/terms.html" data-i18n="footer.terms">Terms of Service</a></li>
+                        <li><a href="/shipping.html" data-i18n="footer.shipping">Shipping Info</a></li>
+                        <li><a href="/returns.html" data-i18n="footer.returns">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4 data-i18n="footer.staySweet">Stay Sweet</h4>
+                    <p data-i18n="footer.subscribeDesc">Subscribe for exclusive offers and recipes.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email address" data-i18n-placeholder="footer.emailPlaceholder" required>
+                        <button type="submit" class="btn-join" data-i18n="footer.join">Join</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2026 L'Or Doré Honey Co. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form handling
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Thank you for reaching out! We will get back to you soon.");
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>

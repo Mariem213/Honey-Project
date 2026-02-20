@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildflower Reserve | L'Or Dore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: #faf9f7;
+        }
+
+        /* Navbar with white background and light shadow (same as About page) */
+        #navbar {
+            background: #ffffff !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+            border-bottom: none !important;
+        }
+
+        #navbar .nav-initial {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+        }
+
+        #navbar .nav-scrolled {
+            background: #ffffff !important;
+            backdrop-filter: none !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        #navbar .logo {
+            color: #1c1917 !important;
+        }
+
+        #navbar .nav-links a {
+            color: #1c1917 !important;
+        }
+
+        #navbar .nav-links a.active {
+            color: #1c1917 !important;
+        }
+
+        #navbar .icon-btn {
+            color: #1c1917 !important;
+        }
+
+        .product-main {
+            padding: 150px 24px 80px;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 44px;
+        }
+
+        .gallery-main {
+            border-radius: 18px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .gallery-main img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .thumbs {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .thumb {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #fff;
+            padding: 0;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .thumb.active {
+            border-color: #da830a;
+            box-shadow: 0 0 0 2px rgba(218, 131, 10, 0.2);
+        }
+
+        .product-category {
+            color: #da830a;
+            letter-spacing: 0.12em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin: 0;
+            color: #1c1917;
+            line-height: 1.1;
+        }
+
+        .product-price-row {
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1c1917;
+        }
+
+        .badge-instock {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #166534;
+            background: #dcfce7;
+            border-radius: 999px;
+            padding: 6px 12px;
+        }
+
+        .product-desc {
+            margin: 22px 0;
+            color: #57534e;
+            line-height: 1.75;
+        }
+
+        .meta-list {
+            margin: 0 0 24px;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #44403c;
+            font-size: 0.95rem;
+        }
+
+        .meta-item i {
+            width: 16px;
+            height: 16px;
+            color: #da830a;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .product-add-btn {
+            border: none;
+            border-radius: 999px;
+            padding: 13px 26px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: #1c1917;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .product-add-btn:hover {
+            background: #da830a;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(218, 131, 10, 0.3);
+        }
+
+        .spec-card {
+            margin-top: 24px;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 18px;
+        }
+
+        .spec-title {
+            margin: 0 0 12px;
+            font-size: 0.9rem;
+            color: #78716c;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .spec-item {
+            background: #faf9f7;
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .spec-key {
+            font-size: 0.75rem;
+            color: #78716c;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .spec-value {
+            margin-top: 4px;
+            color: #292524;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .related-section {
+            padding: 0 24px 90px;
+        }
+
+        .related-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 24px;
+        }
+
+        .related-header h2 {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .related-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: rgba(218, 131, 10, 0.25);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .related-body {
+            padding: 14px;
+        }
+
+        .related-name {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.45rem;
+            color: #1c1917;
+        }
+
+        .related-price {
+            margin-top: 8px;
+            color: #292524;
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar" class="nav-initial">
+        <div class="nav-container max-w-7xl">
+            <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>re</a>
+            <div class="nav-links hidden-mobile">
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" class="active" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button id="lang-toggle" class="icon-btn"><i data-lucide="globe"></i><span>EN</span></button>
+                <button id="search-toggle" class="icon-btn"><i data-lucide="search"></i></button>
+                <div id="search-container" class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search products..."
+                        data-i18n-placeholder="nav.search" autocomplete="off">
+                    <button id="search-close" class="search-close"><i data-lucide="x"></i></button>
+                </div>
+                <a href="/auth.html" class="icon-btn hide-mobile"><i data-lucide="user"></i></a>
+                <a href="/cart.html" class="icon-btn cart-btn hide-mobile">
+                    <i data-lucide="shopping-bag"></i><span class="cart-dot"></span>
+                </a>
+                <button id="menu-toggle" class="icon-btn md-hide"><i data-lucide="menu"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-sheet">
+        <div class="sheet-content">
+            <div class="sheet-header">
+                <a href="/" class="logo">L'Or D<span class="gold-accent">o</span>re</a>
+                <button id="menu-close" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="sheet-links">
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/offering.html" class="active" data-i18n="nav.shop">Shop</a>
+                <a href="/categories.html" data-i18n="nav.collections">Collections</a>
+                <a href="/about.html" data-i18n="nav.about">About</a>
+                <a href="/contact.html" data-i18n="nav.contact">Contact</a>
+            </div>
+            <div class="sheet-actions">
+                <a href="/auth.html" class="sheet-action-link"><i data-lucide="user"></i><span
+                        data-i18n="nav.login">Login</span></a>
+                <a href="/cart.html" class="sheet-action-link"><i data-lucide="shopping-bag"></i><span
+                        data-i18n="nav.cart">Add to Cart</span></a>
+            </div>
+        </div>
+    </div>
+
+    <main class="product-main">
+        <section class="max-w-7xl product-layout">
+            <div>
+                <div class="gallery-main">
+                    <img id="main-product-image" src="assets/shop1Honey.png" alt="Wildflower Reserve">
+                </div>
+                <div class="thumbs">
+                    <button class="thumb active" data-image="assets/shop1Honey.png" type="button"><img
+                            src="assets/shop1Honey.png" alt="Wildflower image 1"></button>
+                    <button class="thumb" data-image="assets/headerHoney-2.jpeg" type="button"><img
+                            src="assets/headerHoney-2.jpeg" alt="Wildflower image 2"></button>
+                    <button class="thumb" data-image="assets/headerHoney.png" type="button"><img
+                            src="assets/headerHoney.png" alt="Wildflower image 3"></button>
+                </div>
+            </div>
+
+            <div>
+                <div class="product-category" data-i18n="product.category">Signature Collection</div>
+                <h1 class="product-title" data-i18n="product.name">Wildflower Reserve</h1>
+                <div class="product-price-row">
+                    <span class="product-price">$24.00</span>
+                    <span class="badge-instock" data-i18n="product.inStock">In stock</span>
+                </div>
+                <p class="product-desc" data-i18n="product.description">
+                    Harvested from wild spring meadows, this jar delivers a layered floral profile with soft citrus
+                    notes and a velvety finish. Cold filtered in small batches to preserve enzymes, aroma, and natural
+                    texture.
+                </p>
+
+                <ul class="meta-list">
+                    <li class="meta-item"><i data-lucide="leaf"></i> <span data-i18n="product.metaOrganic">100%
+                            Organic and unpasteurized</span></li>
+                    <li class="meta-item"><i data-lucide="map-pin"></i> <span data-i18n="product.metaOrigin">Single
+                            origin from Provence wildflowers</span></li>
+                    <li class="meta-item"><i data-lucide="package"></i> <span data-i18n="product.metaWeight">Net
+                            weight: 500g glass jar</span></li>
+                </ul>
+
+                <div class="action-row">
+                    <div class="quantity-stepper" data-product-id="1">
+                        <button type="button" class="qty-btn qty-minus" aria-label="Decrease quantity">-</button>
+                        <span class="qty-value">1</span>
+                        <button type="button" class="qty-btn qty-plus" aria-label="Increase quantity">+</button>
+                    </div>
+                    <button id="product-add-btn" class="product-add-btn">
+                        <span data-i18n="featured.addToBag">ADD TO BAG</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="spec-card">
+                    <h3 class="spec-title" data-i18n="product.specsTitle">Product Details</h3>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <div class="spec-key" data-i18n="product.specTaste">Taste</div>
+                            <div class="spec-value" data-i18n="product.specTasteValue">Floral, smooth, light
+                                citrus</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-key" data-i18n="product.specTexture">Texture</div>
+                            <div class="spec-value" data-i18n="product.specTextureValue">Velvety and naturally
+                                thick</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-key" data-i18n="product.specPairing">Best With</div>
+                            <div class="spec-value" data-i18n="product.specPairingValue">Cheese boards, tea,
+                                yogurt</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-key" data-i18n="product.specStorage">Storage</div>
+                            <div class="spec-value" data-i18n="product.specStorageValue">Keep in a cool, dry
+                                place</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="related-section">
+        <div class="max-w-7xl">
+            <div class="related-header">
+                <h2 data-i18n="product.relatedTitle">Related Products</h2>
+                <a href="/offering.html" class="view-all"><span data-i18n="featured.viewAll">View all products</span>
+                    <i data-lucide="arrow-right"></i></a>
+            </div>
+            <div class="related-grid">
+                <a href="/offering.html" class="related-card">
+                    <img src="assets/shop2Honey.png" alt="Royal Acacia">
+                    <div class="related-body">
+                        <h3 class="related-name" data-i18n="product.relatedOne">Royal Acacia</h3>
+                        <div class="related-price">$32.00</div>
+                    </div>
+                </a>
+                <a href="/offering.html" class="related-card">
+                    <img src="assets/shop3Honey.png" alt="Raw Honeycomb">
+                    <div class="related-body">
+                        <h3 class="related-name" data-i18n="product.relatedTwo">Raw Honeycomb</h3>
+                        <div class="related-price">$18.00</div>
+                    </div>
+                </a>
+                <a href="/offering.html" class="related-card">
+                    <img src="assets/shop1Honey.png" alt="Orange Blossom">
+                    <div class="related-body">
+                        <h3 class="related-name" data-i18n="product.relatedThree">Orange Blossom</h3>
+                        <div class="related-price">$22.00</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer section-padding">
+        <div class="max-w-7xl">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="logo-text">L'Or Doré</h3>
+                    <p class="footer-desc" data-i18n="footer.desc">
+                        Purveyors of the finest, ethically sourced honey from around the world.
+                        Nature's liquid gold, delivered to your doorstep.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.explore">Explore</h4>
+                    <ul>
+                        <li><a href="/offering.html" data-i18n="footer.shopAll">Shop All</a></li>
+                        <li><a href="/categories.html" data-i18n="footer.categories">Categories</a></li>
+                        <li><a href="/#story" data-i18n="footer.ourStory">Our Story</a></li>
+                        <li><a href="/contact.html" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="/privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="/terms.html" data-i18n="footer.terms">Terms of Service</a></li>
+                        <li><a href="/shipping.html" data-i18n="footer.shipping">Shipping Info</a></li>
+                        <li><a href="/returns.html" data-i18n="footer.returns">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-newsletter">
+                    <h4 data-i18n="footer.staySweet">Stay Sweet</h4>
+                    <p data-i18n="footer.subscribeDesc">Subscribe for exclusive offers and recipes.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email address" data-i18n-placeholder="footer.emailPlaceholder"
+                            required>
+                        <button type="submit" class="btn-join" data-i18n="footer.join">Join</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2026 L'Or Doré Honey Co. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script src="js/translations.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const mainImage = document.getElementById('main-product-image');
+        const thumbs = document.querySelectorAll('.thumb');
+        thumbs.forEach((thumb) => {
+            thumb.addEventListener('click', () => {
+                thumbs.forEach((btn) => btn.classList.remove('active'));
+                thumb.classList.add('active');
+                mainImage.src = thumb.getAttribute('data-image');
+            });
+        });
+
+        const qtyRoot = document.querySelector('.quantity-stepper');
+        if (qtyRoot) {
+            const minus = qtyRoot.querySelector('.qty-minus');
+            const plus = qtyRoot.querySelector('.qty-plus');
+            const value = qtyRoot.querySelector('.qty-value');
+            minus.addEventListener('click', () => {
+                const next = Math.max(1, (Number(value.textContent) || 1) - 1);
+                value.textContent = String(next);
+            });
+            plus.addEventListener('click', () => {
+                const next = (Number(value.textContent) || 1) + 1;
+                value.textContent = String(next);
+            });
+        }
+
+        const addBtn = document.getElementById('product-add-btn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                const quantity = document.querySelector('.quantity-stepper .qty-value')?.textContent || '1';
+                const original = addBtn.innerHTML;
+                addBtn.innerHTML = '<i data-lucide="check"></i> Added';
+                addBtn.style.background = '#16a34a';
+                lucide.createIcons();
+                console.log('Added Wildflower Reserve x' + quantity);
+                setTimeout(() => {
+                    addBtn.innerHTML = original;
+                    addBtn.style.background = '';
+                    lucide.createIcons();
+                }, 1800);
+            });
+        }
+
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
