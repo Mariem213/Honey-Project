@@ -406,56 +406,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Scroll to Top Button
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    if (scrollToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
+    window.honeyPageUtils?.initScrollToTop();
 
     // Initialize icons
     lucide.createIcons();
-
-    // Navbar Search Toggle
-    const searchToggle = document.getElementById('search-toggle');
-    const navSearchContainer = document.getElementById('search-container');
-    const searchClose = document.getElementById('search-close');
-    const navSearchInput = document.getElementById('search-input');
-
-    if (searchToggle && navSearchContainer) {
-        searchToggle.addEventListener('click', () => {
-            navSearchContainer.classList.toggle('active');
-            if (navSearchContainer.classList.contains('active') && navSearchInput) {
-                setTimeout(() => navSearchInput.focus(), 100);
-            }
-        });
-    }
-
-    if (searchClose && navSearchContainer) {
-        searchClose.addEventListener('click', () => {
-            navSearchContainer.classList.remove('active');
-        });
-    }
-
-    // Close navbar search when clicking outside
-    document.addEventListener('click', (e) => {
-        if (navSearchContainer &&
-            !navSearchContainer.contains(e.target) &&
-            e.target !== searchToggle) {
-            navSearchContainer.classList.remove('active');
-        }
-    });
 }); // End DOMContentLoaded
-

@@ -1,22 +1,7 @@
 ﻿lucide.createIcons();
 
-// Scroll to Top Button
-const scrollToTopBtn = document.getElementById('scrollToTop');
+window.honeyPageUtils?.initScrollToTop();
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('visible');
-    } else {
-        scrollToTopBtn.classList.remove('visible');
-    }
-});
-
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
 
 const ORDERS_KEY = 'honeyOrders';
 const CART_KEY = 'honeyCart';
@@ -96,4 +81,3 @@ document.getElementById('checkout-form').addEventListener('submit', function (e)
     alert('Order placed successfully!');
     window.location.href = '/previous-orders.html';
 });
-

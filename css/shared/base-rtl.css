@@ -1,0 +1,455 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700&display=swap");
+
+:root {
+	--primary: #da830a; /* Primary Orange */
+	--background: #ffffff;
+	--foreground: #1c1917;
+	--secondary: #f5f5f4;
+	--white: #ffffff;
+	--font-global: "Noto Kufi Arabic", Helvetica, Arial, sans-serif;
+	--font-size-body: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+	--font-size-small: clamp(0.8rem, 0.77rem + 0.1vw, 0.9rem);
+	--font-size-h6: clamp(0.98rem, 0.94rem + 0.15vw, 1.08rem);
+	--font-size-h5: clamp(1.08rem, 1.02rem + 0.2vw, 1.22rem);
+	--font-size-h4: clamp(1.2rem, 1.12rem + 0.3vw, 1.4rem);
+	--font-size-h3: clamp(1.35rem, 1.2rem + 0.45vw, 1.7rem);
+	--font-size-h2: clamp(1.6rem, 1.35rem + 0.8vw, 2.2rem);
+	--font-size-h1: clamp(1.9rem, 1.5rem + 1.2vw, 2.8rem);
+}
+
+/* RTL Support */
+html[dir="rtl"] {
+	direction: rtl;
+}
+
+html[dir="ltr"] {
+	direction: ltr;
+}
+
+body.rtl {
+	direction: rtl;
+	text-align: right;
+}
+
+body.ltr {
+	direction: ltr;
+	text-align: left;
+}
+
+/* RTL Grid Reversals */
+html[dir="rtl"] .tradition-grid {
+	direction: rtl;
+}
+
+html[dir="rtl"] .grid-2 {
+	direction: rtl;
+}
+
+/* RTL Text Alignment */
+html[dir="rtl"] .tradition-content {
+	padding-left: 3rem;
+	padding-right: 0;
+}
+
+html[dir="rtl"] .footer-brand,
+html[dir="rtl"] .footer-links,
+html[dir="rtl"] .footer-newsletter {
+	text-align: right;
+}
+
+html[dir="rtl"] .quote-box {
+	right: -2rem;
+	left: auto;
+	padding: 2rem 2.5rem;
+	margin: 0;
+}
+
+html[dir="rtl"] .years-badge {
+	left: -30px;
+	right: auto;
+}
+
+/* RTL Navbar adjustments */
+html[dir="rtl"] .nav-links {
+	justify-content: center;
+}
+
+html[dir="rtl"] .nav-actions {
+	flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .search-container {
+	right: auto;
+	left: 0;
+}
+
+html[dir="rtl"] .search-close {
+	right: auto;
+	left: 0.5rem;
+}
+
+html[dir="rtl"] .search-input {
+	padding: 0.875rem 1rem 0.875rem 3rem;
+}
+
+/* RTL Mobile Menu */
+html[dir="rtl"] .mobile-sheet {
+	right: auto;
+	left: 0;
+	transform: translateX(-100%);
+}
+
+html[dir="rtl"] .mobile-sheet.active {
+	transform: translateX(0);
+}
+
+html[dir="rtl"] .sheet-links a::before {
+	left: auto;
+	right: 0;
+}
+
+html[dir="rtl"] .sheet-links a:hover,
+html[dir="rtl"] .sheet-links a.active {
+	padding-left: 2rem;
+	padding-right: 2.5rem;
+	transform: translateX(-4px);
+}
+
+/* RTL Scroll to Top */
+html[dir="rtl"] .scroll-to-top {
+	right: auto;
+	left: 30px;
+}
+
+@media (max-width: 768px) {
+	html[dir="rtl"] .scroll-to-top {
+		left: 20px;
+		right: auto;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body,
+body * {
+	font-family: var(--font-global) !important;
+}
+
+body {
+	font-size: var(--font-size-body);
+	line-height: 1.7;
+	text-rendering: optimizeLegibility;
+}
+
+h1 {
+	font-size: var(--font-size-h1);
+	line-height: 1.2;
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+	line-height: 1.25;
+}
+
+h3 {
+	font-size: var(--font-size-h3);
+	line-height: 1.3;
+}
+
+h4 {
+	font-size: var(--font-size-h4);
+	line-height: 1.35;
+}
+
+h5 {
+	font-size: var(--font-size-h5);
+	line-height: 1.4;
+}
+
+h6 {
+	font-size: var(--font-size-h6);
+	line-height: 1.45;
+}
+
+p,
+li,
+a,
+button,
+input,
+select,
+textarea,
+label,
+td,
+th {
+	font-size: var(--font-size-body);
+	line-height: 1.6;
+}
+
+small,
+.small {
+	font-size: var(--font-size-small);
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-global) !important;
+	font-weight: 600;
+}
+body {
+	font-family: "Montserrat", sans-serif;
+	color: var(--foreground);
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f5f5f4;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #da830a;
+	border-radius: 6px;
+	border: 2px solid #f5f5f4;
+	transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #c67509;
+}
+
+/* Firefox Scrollbar */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #da830a #f5f5f4;
+}
+h1,
+h2,
+h3 {
+	font-family: "Cormorant Garamond", serif;
+}
+
+.max-w-7xl {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+/* Professional Section Spacing */
+.section-padding {
+	padding: 8rem 0 0;
+}
+
+/* Section spacing for better visual hierarchy */
+section {
+	margin: 0;
+	position: relative;
+}
+
+/* Add spacing between consecutive sections */
+section + section {
+	margin-top: 0;
+}
+
+/* Spacing utilities for professional design */
+.spacing-top-large {
+	margin-top: 6rem;
+	padding-top: 2rem;
+}
+
+.spacing-bottom-large {
+	margin-bottom: 6rem;
+	padding-bottom: 2rem;
+}
+
+.spacing-top-medium {
+	margin-top: 4rem;
+	padding-top: 1.5rem;
+}
+
+.spacing-bottom-medium {
+	margin-bottom: 4rem;
+	padding-bottom: 1.5rem;
+}
+
+/* Content spacing within sections */
+.content-spacing {
+	margin-bottom: 3rem;
+}
+
+.content-spacing-large {
+	margin-bottom: 4rem;
+}
+
+/* Add breathing room between major sections */
+.section-spacing {
+	margin-top: 6rem;
+	margin-bottom: 6rem;
+}
+
+/* Hero section spacing */
+.hero {
+	margin-bottom: 0;
+}
+
+/* Featured section spacing */
+.featured {
+	padding: 8rem 0;
+}
+
+/* Tradition section spacing */
+.tradition {
+	padding: 8rem 0;
+}
+
+/* Newsletter section spacing */
+.newsletter {
+	padding: 8rem 0;
+}
+
+/* Page-specific spacing improvements */
+.page-hero {
+	padding: 180px 24px 96px;
+}
+
+.page-section {
+	padding: 96px 24px;
+}
+
+.page-content {
+	padding: 80px 24px;
+}
+
+/* Cart and Checkout page spacing */
+.cart-page,
+.checkout-page {
+	padding-top: 140px;
+	padding-bottom: 80px;
+}
+
+/* Offering page spacing */
+.offering-header {
+	padding: 160px 24px 80px;
+}
+
+.products-section {
+	padding: 0 24px 80px;
+}
+
+/* Categories page spacing */
+.categories-page {
+	padding: 160px 24px 100px;
+}
+
+/* Contact page spacing */
+.contact-page {
+	padding: 160px 24px 100px;
+}
+
+/* About page spacing */
+.about-hero {
+	padding: 180px 24px 96px;
+}
+
+.heritage-section {
+	padding: 96px 24px;
+}
+
+.values-dark {
+	padding: 96px 24px;
+}
+
+/* Responsive spacing for pages */
+@media (max-width: 1024px) {
+	.page-hero,
+	.about-hero {
+		padding: 160px 24px 80px;
+	}
+
+	.page-section,
+	.heritage-section,
+	.values-dark {
+		padding: 80px 24px;
+	}
+
+	.cart-page,
+	.checkout-page,
+	.contact-page,
+	.categories-page {
+		padding-top: 120px;
+		padding-bottom: 60px;
+	}
+}
+
+/* Additional spacing adjustments for small screens */
+@media (max-width: 768px) {
+	.page-hero,
+	.about-hero {
+		padding: 140px 20px 60px; /* More top padding, less bottom on small screens */
+	}
+
+	.page-section,
+	.heritage-section,
+	.values-dark {
+		padding: 60px 20px;
+	}
+
+	.cart-page,
+	.checkout-page,
+	.contact-page,
+	.categories-page {
+		padding-top: 100px;
+		padding-bottom: 40px;
+	}
+
+	.offering-header {
+		padding: 140px 24px 60px;
+	}
+}
+
+@media (max-width: 768px) {
+	.page-hero,
+	.about-hero {
+		padding: 140px 24px 64px;
+	}
+
+	.page-section,
+	.heritage-section,
+	.values-dark {
+		padding: 64px 24px;
+	}
+
+	.cart-page,
+	.checkout-page,
+	.contact-page,
+	.categories-page {
+		padding-top: 120px;
+		padding-bottom: 60px;
+	}
+
+	.offering-header {
+		padding: 120px 24px 48px;
+	}
+
+	.products-section {
+		padding: 0 24px 60px;
+	}
+}
